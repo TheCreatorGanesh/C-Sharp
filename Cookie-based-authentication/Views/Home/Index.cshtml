@@ -1,0 +1,39 @@
+﻿<h1>Cookie Auth in ASP.NET Core MVC</h1>
+
+<a asp-action="UsersOnly" asp-controller="Home">User's only Page'</a>
+<a asp-action="AdminOnly" asp-controller="Home">Admin's only Page'</a>
+
+
+<p>
+	Currently, the user is @(User.Identity?.Name ?? "Anonymous")
+</p>
+
+@if(User.Identity?.IsAuthenticated ?? false)
+{
+	<p>User is authenticated</p>
+	<form asp-action="Logout" asp-controller="Auth" method="Post">
+		<button type="submit" class="btn btn-danger">Logout</button>
+	</form>
+}
+else
+
+{
+	<p> They are <strong>not</strong> authenticated</p>
+}
+
+<h2>
+	Claims
+</h2>
+@if(User.Claims.Any())
+{
+	<ul>
+	@foreach(var claim in User.Claims)
+		{
+			<li>@claim.ToString()</li>
+		}
+	</ul>
+}
+else
+{
+	<p>NO Claims found!</p>
+}
