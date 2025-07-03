@@ -5,22 +5,16 @@
 	// factory or product subclass to the client code without breaking it.
 	public class ProductsClient
 	{
-		public static void Main()
+		public readonly IAbstractFactory _factory;
+		public ProductsClient(IAbstractFactory factory)
 		{
-			// The client code can work with any concrete factory class.
-			Console.WriteLine("Client: Testing client code with the first factory type...\n");
-			ClientMethod(new ConcreteFactory1());
-			Console.WriteLine();
-			Console.WriteLine("---------------------------------------------------------------------------\n");
-
-			Console.WriteLine("Client: Testing the same client code with the second factory type...\n");
-			ClientMethod(new ConcreteFactory2());
+			_factory = factory;
 		}
 
-		public static void ClientMethod(IAbstractFactory factory)
+		public void ClientMethod()
 		{
-			var productA = factory.CreateProductA();
-			var productB = factory.CreateProductB();
+			var productA = _factory.CreateProductA();
+			var productB = _factory.CreateProductB();
 			Console.WriteLine(productB.UsefulFunctionB() + "\n");
 			Console.WriteLine(productB.AnotherUsefulFunctionB(productA) + "\n");
 		}

@@ -1,4 +1,6 @@
-﻿using AbstractFactory_Pattern.Products;
+﻿using AbstractFactory_Pattern.FurnitureShop;
+using AbstractFactory_Pattern.FurnitureShop.Concrete_Factories;
+using AbstractFactory_Pattern.Products;
 using Composite_Pattern.HousingExample;
 using Composite_Pattern.PlaylistApplicationExample;
 
@@ -8,12 +10,13 @@ namespace Client
 	{
 		static void Main(string[] args)
 		{
-			var p = 3;
+			var p = 32;
 			switch (p)
 			{
 				case 1: { compositePattern_Housing(); break; }
 				case 2: { compositePattern_PlaylistApplication(); break; }
-				case 3: { AbstractFactoryPattern(); break; }
+				case 31: { AbstractFactoryPattern_Products(); break; }
+				case 32: { AbstractFactoryPattern_FurnitureShop(); break; }
 			}
 		}
 
@@ -93,9 +96,33 @@ namespace Client
 			Console.WriteLine("The Playlist's name is " + studyPlaylist.getName());
 		}
 
-		static void AbstractFactoryPattern()
+		static void AbstractFactoryPattern_Products()
 		{
-			ProductsClient.Main();
+			// The client code can work with any concrete factory class.
+			Console.WriteLine("Client: Testing client code with the first factory type...\n");
+			var Products1 = new ProductsClient(new ConcreteFactory1());
+			Products1.ClientMethod();
+			Console.WriteLine();
+			Console.WriteLine("---------------------------------------------------------------------------\n");
+
+			Console.WriteLine("Client: Testing the same client code with the second factory type...\n");
+			var Products2 = new ProductsClient(new ConcreteFactory2());
+			Products2.ClientMethod();
+		}
+
+		static void AbstractFactoryPattern_FurnitureShop()
+		{
+			Console.WriteLine("-----------------Order for Modern Furniture----------------------");
+			var modernFactory = new ModernFurnitureFactory();
+			var modernShop = new FurnitureShop(modernFactory);
+			modernShop.ShowProducts();
+			Console.WriteLine();
+
+			Console.WriteLine("-----------------Order for Vintage Furniture---------------------");
+			var vintageFactory = new VintageFurnitureFactory();
+			var vintageShop = new FurnitureShop(vintageFactory);
+			vintageShop.ShowProducts();
+			Console.WriteLine();
 		}
 	}
 }
