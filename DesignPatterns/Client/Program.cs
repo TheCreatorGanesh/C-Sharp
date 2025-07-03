@@ -113,13 +113,13 @@ namespace Client
 		static void AbstractFactoryPattern_FurnitureShop()
 		{
 			Console.WriteLine("-----------------Order for Modern Furniture----------------------");
-			var modernFactory = new ModernFurnitureFactory();
+			IFurnitureFactory modernFactory = new ModernFurnitureFactory();
 			var modernShop = new FurnitureShop(modernFactory);
 			modernShop.ShowProducts();
 			Console.WriteLine();
 
 			Console.WriteLine("-----------------Order for Vintage Furniture---------------------");
-			var vintageFactory = new VintageFurnitureFactory();
+			IFurnitureFactory vintageFactory = new VintageFurnitureFactory();
 			var vintageShop = new FurnitureShop(vintageFactory);
 			vintageShop.ShowProducts();
 			Console.WriteLine();
