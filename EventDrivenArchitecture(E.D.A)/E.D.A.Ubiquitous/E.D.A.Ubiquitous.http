@@ -1,0 +1,6 @@
+@E.D.A.Ubiquitous_HostAddress = http://localhost:5038
+
+GET {{E.D.A.Ubiquitous_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
