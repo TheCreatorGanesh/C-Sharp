@@ -8,7 +8,7 @@ services:
       args:
         BUILD_CONFIGURATION: "Release"
         APP_UID: "1000"
-    image: e.d.a.ubiquitous:latest
+    image: e.d.a.ubiquitous:${IMAGE_TAG:-latest}
     ports:
       - "8080:8080"
       - "8081:8081"
